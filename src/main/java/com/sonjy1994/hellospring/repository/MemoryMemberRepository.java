@@ -1,9 +1,12 @@
 package com.sonjy1994.hellospring.repository;
 
 import com.sonjy1994.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+// 스프링 뜰 때 리포지토리를 스프링 컨테이너에 등록
+@Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>();
