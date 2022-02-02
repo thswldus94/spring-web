@@ -1,45 +1,34 @@
 package com.sonjy1994.hellospring.service;
 
 import com.sonjy1994.hellospring.domain.Member;
-import com.sonjy1994.hellospring.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
+import com.sonjy1994.hellospring.repository.MemberRepository;
+// import com.sonjy1994.hellospring.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.annotation.Commit;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+@SpringBootTest
+// Transactional은 테스트하기 좋도록,
+// 예를들어 insert 하는 테스트라면 끝나면 다시 rollback 시켜줌
+// db에 영향주는게읎음~
+@Transactional
+class MemberServiceIntgTest {
 
-class MemberServiceTest {
-
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
-
-    // 모든 메서드가 시작하기 전에 자동으로 실행되는 메소드
-    @BeforeEach
-    public void beforeEach() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-
-    // 모든 메서드가 끝난 후에 자동적으로 실행되는 메소드
-    @AfterEach
-    public void afterEach() {
-        // 싹 다 날려주는게 왜 필요하냐면 테스트할때 순서에 따라서
-        // 이전 데이터가 저장될 수도 있기 때문에 한번 싹 다 날려주는 메소드 필요
-        memberRepository.clearStore();
-    }
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
     // 테스트는 한글로 이름 적어도 무방함 ㅋㅋ
     @Test
-    @Commit
     void 회원가입() {
         // given
         Member member = new Member();
-        member.setName("sonjy1994");
+        member.setName("sonjy1994_123");
 
         // when
         Long saveId = memberService.join(member);
@@ -73,11 +62,4 @@ class MemberServiceTest {
         // then
     }
 
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
-    }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 // 스프링 뜰 때 리포지토리를 스프링 컨테이너에 등록
-@Repository
+// @Repository
 public class MemoryMemberRepository implements MemberRepository{
 
     private static Map<Long, Member> store = new HashMap<>();
@@ -36,7 +36,6 @@ public class MemoryMemberRepository implements MemberRepository{
         return new ArrayList<>((store.values()));
     }
 
-    @Override
     public void clearStore() {
         store.clear();
     }
