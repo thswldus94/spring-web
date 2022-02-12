@@ -17,6 +17,7 @@
                 <th>이름</th>
                 <th>설명</th>
                 <th>위치</th>
+                <th>주문</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                 <td th:text="${store.name}"></td>
                 <td th:text="${store.description}"></td>
                 <td th:text="${store.location}"></td>
+                <td><a href="/order/new">주문하기</a></td>
             </tr>
             </tbody>
         </table>
