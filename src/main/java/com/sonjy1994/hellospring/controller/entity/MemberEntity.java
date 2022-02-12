@@ -1,6 +1,6 @@
-package com.sonjy1994.hellospring.controller;
+package com.sonjy1994.hellospring.controller.entity;
 
-public class MemberForm {
+public class MemberEntity {
     private String name;
 
     public String getName() {

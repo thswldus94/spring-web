@@ -1,5 +1,6 @@
 package com.sonjy1994.hellospring.controller;
 
+import com.sonjy1994.hellospring.controller.entity.MemberEntity;
 import com.sonjy1994.hellospring.domain.Member;
 import com.sonjy1994.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class MemberController {
     }
 
     @PostMapping("/members/new")
-    public String create(MemberForm form) {
+    public String create(MemberEntity entity) {
         Member member = new Member();
-        member.setName(form.getName());
+        member.setName(entity.getName());
 
         memberService.join(member);
 

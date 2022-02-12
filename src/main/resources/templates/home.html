@@ -1,14 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/store/store.css">
+</head>
 <body>
 <div class="container">
     <div>
-        <h1>Hello Spring</h1>
-        <p>회원 기능</p>
-        <p>
-            <a href="/members/new">회원 가입</a>
-            <a href="/members">회원 목록</a>
-        </p>
+        <select name="location">
+            <option th:each="location : ${locationList}" th:value="${location}" th:text="${location}"></option>
+        </select>
+
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+                <th>설명</th>
+                <th>위치</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="store : ${storeList}">
+                <td th:text="${store.idx}"></td>
+                <td th:text="${store.name}"></td>
+                <td th:text="${store.description}"></td>
+                <td th:text="${store.location}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div> <!-- /container -->
 </body>
