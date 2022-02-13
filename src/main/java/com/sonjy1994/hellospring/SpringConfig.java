@@ -2,6 +2,7 @@ package com.sonjy1994.hellospring;
 
 import com.sonjy1994.hellospring.aop.TimeTraceAop;
 import com.sonjy1994.hellospring.repository.*;
+import com.sonjy1994.hellospring.service.FoodService;
 import com.sonjy1994.hellospring.service.MemberService;
 import com.sonjy1994.hellospring.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,16 @@ public class SpringConfig {
     @Bean
     public StoreRepository storeRepository() {
         return new JpaStoreRepository(em);
+    }
+
+    @Bean
+    public FoodService foodService() {
+        return new FoodService(foodRepository());
+    }
+
+    @Bean
+    public FoodRepository foodRepository() {
+        return new JpaFoodRepository(em);
     }
 
 //    @Bean
