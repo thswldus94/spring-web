@@ -4,6 +4,7 @@ import com.sonjy1994.hellospring.aop.TimeTraceAop;
 import com.sonjy1994.hellospring.repository.*;
 import com.sonjy1994.hellospring.service.FoodService;
 import com.sonjy1994.hellospring.service.MemberService;
+import com.sonjy1994.hellospring.service.OrderService;
 import com.sonjy1994.hellospring.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -49,6 +50,16 @@ public class SpringConfig {
     @Bean
     public FoodRepository foodRepository() {
         return new JpaFoodRepository(em);
+    }
+
+    @Bean
+    public OrderService orderService() {
+        return new OrderService(orderRepository());
+    }
+
+    @Bean
+    public OrderRepository orderRepository() {
+        return new JpaOrderRepository(em);
     }
 
 //    @Bean

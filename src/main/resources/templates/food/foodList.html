@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="/order/new" method="post">
+    <form method="post">
         <div>
             <p>가게 이름: </p>
             <table>
@@ -23,7 +23,7 @@
                 <tr th:each="food : ${foodList}">
                     <td th:text="${food.idx}"></td>
                     <td>
-                        <input type="checkbox" name="order_list" th:value="${food.idx}">
+                        <input type="checkbox" name="food_list" th:value="${food.idx}">
                     </td>
                     <td th:text="${food.name}"></td>
                     <td th:text="${food.description}"></td>
@@ -34,9 +34,14 @@
                 </tr>
                 </tbody>
             </table>
-            <button type="submit">주문 ㄱㄱ!</button>
+            <!-- <button type="submit">주문 ㄱㄱ!</button> -->
+            <button type="button" onclick="add_order();">주문 ㄱㄱ!</button>
         </div>
+
+        <input type="hidden" th:value="${storeIdx}" name="store_idx"/>
     </form>
 </div> <!-- /container -->
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="/js/order/order.js"></script>
 </html>

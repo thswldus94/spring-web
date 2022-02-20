@@ -24,7 +24,10 @@ public class FoodController {
     @GetMapping("/food/list")
     public String list(@RequestParam("storeIdx") Long storeIdx, Model model) {
         List<Food> foodList = foodService.getFoodListByStoreIdx(storeIdx);
+
         model.addAttribute("foodList", foodList);
+        model.addAttribute("storeIdx", storeIdx);
+
         return "food/foodList";
     }
 }
