@@ -6,6 +6,8 @@
 <body>
 <div class="container">
     <div>
+        <a href="/user/join">회원가입</a>
+
         <select name="location">
             <option th:each="location : ${locationList}" th:value="${location}" th:text="${location}"></option>
         </select>

@@ -1,11 +1,12 @@
 package com.sonjy1994.hellospring.controller.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderEntity {
     private Long userIdx;
     private Long storeIdx;
-    private Long foodIdx;
+    private List<Long> foodIdxList;
     private LocalDateTime createdTime;
 
     public Long getUserIdx() {
@@ -24,12 +25,21 @@ public class OrderEntity {
         this.storeIdx = storeIdx;
     }
 
-    public Long getFoodIdx() {
-        return foodIdx;
+//    public Long getFoodIdx() {
+//        return foodIdx;
+//    }
+//
+//    public void setFoodIdx(Long foodIdx) {
+//        this.foodIdx = foodIdx;
+//    }
+
+
+    public List<Long> getFoodIdxList() {
+        return foodIdxList;
     }
 
-    public void setFoodIdx(Long foodIdx) {
-        this.foodIdx = foodIdx;
+    public void setFoodIdxList(List<Long> foodIdxList) {
+        this.foodIdxList = foodIdxList;
     }
 
     public LocalDateTime getCreatedTime() {
@@ -41,6 +51,6 @@ public class OrderEntity {
     }
 
     public String toString() {
-        return "Order Entity [userIdx = " + userIdx + " storeIdx = " + storeIdx + " foodIdx = " + foodIdx + "]";
+        return "Order Entity [userIdx = " + userIdx + " storeIdx = " + storeIdx + " foodIdxList = " + foodIdxList + "]";
     }
 }

@@ -29,14 +29,9 @@ public class OrderController {
     }
 
     @PostMapping("/order/add_order")
-    public String addOrder(@RequestBody List<OrderEntity> orderList) {
-        orderService.addOrder(orderList);
+    public String addOrder(@RequestBody OrderEntity entity) {
 
-//        System.out.println(">>> " + data.get("order_list"));
-//        System.out.println(">>> " + data.get("store_idx"));
-
-        // result = orderService.addOrder(storeIdx, foodList);
-        // System.out.println(result);
+        orderService.addOrder(entity);
 
         return "redirect:/";
     }

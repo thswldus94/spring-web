@@ -2,6 +2,7 @@ package com.sonjy1994.hellospring.service;
 
 import com.sonjy1994.hellospring.controller.entity.OrderEntity;
 import com.sonjy1994.hellospring.domain.Order;
+import com.sonjy1994.hellospring.domain.OrderFood;
 import com.sonjy1994.hellospring.repository.OrderRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,51 +23,20 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public String addOrder(List<OrderEntity> entityList) {
-//        // validate store for duplicate
-//        validateDuplicateStore(store);
-        String orderKey = getRandomOrderKey();
+    public void addOrder(OrderEntity entity) {
+        Order order = new Order();
+        // test 유저 용 로그인 기능 생기면 뺄거임
+        order.setUserIdx(1L);
+        order.setStoreIdx(entity.getStoreIdx());
 
-        for (int i = 0; i < entityList.size(); i++) {
-            OrderEntity entity = entityList.get(i);
+        List<Long> foodIdxList = entity.getFoodIdxList();
+        for (int i = 0; i < foodIdxList.size(); i++) {
+            OrderFood orderFood = new OrderFood();
+            orderFood.setFoodIdx(foodIdxList.get(i));
 
-            Order order = new Order();
-
-            order.setOrderKey(orderKey);
-            // test user id (login 연동하면 바꿀 예정)
-            order.setUserIdx(1L);
-            order.setStoreIdx(entity.getStoreIdx());
-            order.setFoodIdx(entity.getFoodIdx());
-
-            // UserOrder userOrder = new UserOrder();
-            // order.userOrder.setUserOrderKey(orderKey);
-            // test user id (login 연동하면 바꿀 예정)
-            // order.setUserUserIdx(1L);
-
-            // UserOrder userOrder = new
-
-            orderRepository.save(order);
+            order.addOrderFood(orderFood);
         }
 
-        return orderKey;
+        orderRepository.save(order);
     }
-
-    private static String getRandomOrderKey() {
-        StringBuffer buffer = new StringBuffer();
-        Random random = new Random();
-
-        String chars[] = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(",");
-
-        for (int i = 0 ; i < 32 ; i++) {
-            buffer.append(chars[random.nextInt(chars.length)]);
-        }
-        return buffer.toString();
-    }
-
-//    private void validateDuplicateStore(Store store) {
-//        storeRepository.findByName(member.getName())
-//                .ifPresent(m -> {
-//                    throw new IllegalStateException("이미 존재하는 회원임!!");
-//                });
-//    }
 }

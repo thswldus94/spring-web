@@ -2,10 +2,7 @@ package com.sonjy1994.hellospring;
 
 import com.sonjy1994.hellospring.aop.TimeTraceAop;
 import com.sonjy1994.hellospring.repository.*;
-import com.sonjy1994.hellospring.service.FoodService;
-import com.sonjy1994.hellospring.service.MemberService;
-import com.sonjy1994.hellospring.service.OrderService;
-import com.sonjy1994.hellospring.service.StoreService;
+import com.sonjy1994.hellospring.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,6 +57,16 @@ public class SpringConfig {
     @Bean
     public OrderRepository orderRepository() {
         return new JpaOrderRepository(em);
+    }
+
+    @Bean
+    public UserService userService() {
+        return new UserService(userRepository());
+    }
+
+    @Bean
+    public UserRepository userRepository() {
+        return new JpaUserRepository(em);
     }
 
 //    @Bean
