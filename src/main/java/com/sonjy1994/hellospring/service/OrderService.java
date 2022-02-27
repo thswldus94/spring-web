@@ -23,7 +23,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public void addOrder(OrderEntity entity) {
+    public Long addOrder(OrderEntity entity) {
         Order order = new Order();
         // test 유저 용 로그인 기능 생기면 뺄거임
         order.setUserIdx(1L);
@@ -37,6 +37,8 @@ public class OrderService {
             order.addOrderFood(orderFood);
         }
 
-        orderRepository.save(order);
+        Order result = orderRepository.save(order);
+
+        return result.getIdx();
     }
 }

@@ -41,16 +41,12 @@ public class UserService {
         // userRepository.login(user);
         Optional<User> opt = userRepository.findByUserId(user.getUserId());
 
-        if(!opt.isPresent()) {
+        if (!opt.isPresent()) {
             return false;
         }
 
         User userInfo = opt.get();
-        if (user.getPassword() == userInfo.getPassword()) {
-            return true;
-        } else {
-            return false;
-        }
+        return user.getPassword().equals(userInfo.getPassword());
     }
 
     private void validateDuplicateUser(User user) {

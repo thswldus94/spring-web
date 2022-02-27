@@ -56,13 +56,22 @@ public class UserController {
         user.setPassword(entity.getPassword());
 
         Boolean result = userService.login(user);
-        if(result) {
+        System.out.println(result);
+        if (result) {
             session.setAttribute("user", user);
             return "redirect:/";
         } else {
             System.out.println("로그인 실패!!!");
             return "redirect:/";
         }
+    }
+
+    @PostMapping("/user/logout")
+    public String logout(HttpServletRequest req) {
+        req.getSession().invalidate();
+        req.getSession(true);
+
+        return "redirect:/";
     }
 
     @GetMapping("/user/list")

@@ -3,6 +3,7 @@ package com.sonjy1994.hellospring.controller;
 import com.sonjy1994.hellospring.controller.entity.OrderEntity;
 import com.sonjy1994.hellospring.domain.Order;
 import com.sonjy1994.hellospring.service.OrderService;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +30,14 @@ public class OrderController {
     }
 
     @PostMapping("/order/add_order")
+    @ResponseBody
     public String addOrder(@RequestBody OrderEntity entity) {
 
-        orderService.addOrder(entity);
+        Long orderIdx = orderService.addOrder(entity);
 
-        return "redirect:/";
+        JSONObject obj = new JSONObject();
+        obj.put("orderIdx", orderIdx);
+
+        return obj.toJSONString();
     }
 }

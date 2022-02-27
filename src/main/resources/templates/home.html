@@ -6,7 +6,15 @@
 <body>
 <div class="container">
     <div>
-        <a href="/user/join">회원가입</a>
+        <div th:if="${userName.equals('')}">
+            <a href="/user/join">회원가입</a>
+            <a href="/user/login">로그인</a>
+        </div>
+        <div th:unless="${userName.equals('')}">
+            <a href="/user/login">로그아웃</a>
+            <br>
+            <span th:text="${userName}"></span>님, 어서오슈
+        </div>
 
         <select name="location">
             <option th:each="location : ${locationList}" th:value="${location}" th:text="${location}"></option>

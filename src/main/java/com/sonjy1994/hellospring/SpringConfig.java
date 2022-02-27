@@ -17,7 +17,6 @@ public class SpringConfig {
     public SpringConfig(EntityManager em) {
         this.em = em;
     }
-
     // 스프링빈에 등록시키기
     @Bean
     public MemberService memberService() {
@@ -67,6 +66,16 @@ public class SpringConfig {
     @Bean
     public UserRepository userRepository() {
         return new JpaUserRepository(em);
+    }
+
+    @Bean
+    public PayService payService() {
+        return new PayService(payRepository());
+    }
+
+    @Bean
+    public PayRepository payRepository() {
+        return new JpaPayRepository(em);
     }
 
 //    @Bean

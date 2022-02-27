@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/store/store.css">
+</head>
+<body>
+<div class="container">
+    <form method="post">
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>메뉴</th>
+                    <th>설명</th>
+                    <th>가격</th>
+                    <!--<th>수량</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="food : ${foodList}">
+                    <td th:text="${food.idx}"></td>
+                    <td th:text="${food.name}"></td>
+                    <td th:text="${food.description}"></td>
+                    <td th:text="${food.price}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            전체 금액: <p th:text="${sumPrice}"></p>
+            <!-- <button type="submit">주문 ㄱㄱ!</button> -->
+            <!-- <button type="button" onclick="add_order();">주문 ㄱㄱ!</button>-->
+        </div>
+
+    </form>
+</div> <!-- /container -->
+</body>
+</html>
